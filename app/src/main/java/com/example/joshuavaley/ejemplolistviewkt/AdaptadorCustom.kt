@@ -1,11 +1,13 @@
 package com.example.joshuavaley.ejemplolistviewkt
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import org.w3c.dom.Text
 
@@ -23,6 +25,7 @@ class AdaptadorCustom(var context:Context, items:ArrayList<Fruta>):BaseAdapter()
 
         var view:View? = convertView
 
+
         //Si celda no tiene contenido.
         if (view == null)
         {
@@ -39,6 +42,11 @@ class AdaptadorCustom(var context:Context, items:ArrayList<Fruta>):BaseAdapter()
         //asociar atributos de Fruta con elementos graficos.
         holder?.texto_fruta?.text = item.nombre_fruta
         holder?.img_fruta?.setImageResource(item.imagen_fruta)
+
+
+        if(position % 2 == 0){
+            holder?.celda?.setBackgroundColor(Color.GRAY)
+        }
 
         return view!!
     }
@@ -60,10 +68,13 @@ class AdaptadorCustom(var context:Context, items:ArrayList<Fruta>):BaseAdapter()
 
         var img_fruta:ImageView? = null
         var texto_fruta:TextView? = null
+        var celda:LinearLayout? = null
 
         init {
             img_fruta = view.findViewById(R.id.imgFruta)
             texto_fruta = view.findViewById(R.id.txtFrta)
+            celda = view.findViewById(R.id.celda)
         }
+
     }
 }
